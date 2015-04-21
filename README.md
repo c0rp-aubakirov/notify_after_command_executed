@@ -18,5 +18,12 @@ this is not finished
 
 or just clone repo
 
-      $ git clone git@github.com:c0rp-aubakirov/notify_after_command_executed.git
+   $ git clone git@github.com:c0rp-aubakirov/notify_after_command_executed.git
+
+Then add sourcing of script `postexec_notify` to your `.bashrc`
+
+   $ cd ~
+   $ git clone git@github.com:c0rp-aubakirov/notify_after_command_executed.git
+   $ cd ~/notify_after_command_executed
+   $ echo "source $(pwd)/postexec_notify" >> ~/.bashrc
 
