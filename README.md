@@ -36,6 +36,15 @@ Here is example of installation:
      $ cd ~/notify_after_command_executed
      $ echo "source $(pwd)/postexec_notify" >> ~/.bashrc
 
+Now restart your terminal. After restart you should see this messages:
+
+	preexec.sh is not exist
+	Trying to download it from github
+
+Now try to test if notification appear:
+
+	$ sleep 6
+
 ## Configuration
 
 There is variable `NOTIFICATION_SECONDS_TRESHOLD` in `postexec_notify` script. This variable indicates how long command should work to be considered as long-running.
