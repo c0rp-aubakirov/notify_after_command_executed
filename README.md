@@ -10,8 +10,8 @@ Script is based on https://github.com/rcaloras/bash-preexec
 
 Script depends on
 
-	`pulseaudio-utils`	->	`sudo apt-get install pulseaudio-utils`
-	`libnotify-bin`	->	`sudo apt-get install libnotify-bin`
+	pulseaudio-utils	->	sudo apt-get install pulseaudio-utils
+	libnotify-bin	->	sudo apt-get install libnotify-bin
 
 ## Quick test
 
@@ -25,7 +25,9 @@ or just clone repo
 
      $ git clone git@github.com:c0rp-aubakirov/notify_after_command_executed.git
 
-Then add sourcing of script `postexec_notify` to your `.bashrc`
+Then add sourcing of script `postexec_notify` to your `.bashrc`.
+
+Here is example of installation:
 
      $ cd ~
      $ git clone git@github.com:c0rp-aubakirov/notify_after_command_executed.git
