@@ -36,3 +36,7 @@ Here is example of installation:
      $ cd ~/notify_after_command_executed
      $ echo "source $(pwd)/postexec_notify" >> ~/.bashrc
 
+## Configuration
+
+There is variable `NOTIFICATION_SECONDS_TRESHOLD` in `postexec_notify` script. This variable indicates how long command should work to be considered as long-running.
+By default it is equals to 5 seconds, this means that any command running more than 5 seconds is considered as long-running command, notification would appear after finish.
