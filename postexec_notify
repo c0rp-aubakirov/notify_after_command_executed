@@ -46,3 +46,5 @@ function precmd() {
 		notify-send -i terminal "Execution is finished" "$LAST_EXECUTED_COMMAND"
 	fi
 }
+
+. "$WORKING_DIR"/preexec.sh
