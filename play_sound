@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SOUND_FILE=/usr/share/sounds/freedesktop/stereo/complete.oga
+
+if [[ -f $SOUND_FILE ]];then
+	paplay $SOUND_FILE
+else
+	notify-send -u critical -i error "Error" "Can't find file /usr/share/sounds/freedesktop/stereo/complete.oga. Settings is located in $(pwd) in file $0"
+fi
