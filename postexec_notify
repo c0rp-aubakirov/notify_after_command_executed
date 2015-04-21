@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# This script it based on 
+# https://github.com/rcaloras/bash-preexec
+#
+# if you want to get last version of preexec.sh
+# do this:
+# curl https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh > preexec.sh
+# ----------------------------------------------------------------------------------
+# Installation:
+# source this file in your ~/.bashrc
+# ----------------------------------------------------------------------------------
+# Get working directory. It is directory where this script is located
+# http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
+# Is a useful one-liner which will give you the full directory name
+# of the script no matter where it is being called from
+WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Treshold from which we start to notify about long running commands
+# this is define what is "long-running"
+# by default it is 5 seconds
+NOTIFICATION_SECONDS_TRESHOLD=5
+
+# check if preexec is available or already downloaded
+if [[ ! -f "$WORKING_DIR"/preexec.sh ]];then
+	printf "preexec.sh is not exist\n"
+	printf "Trying to download it from github\n"
+	if ! $(curl -s https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh > "$WORKING_DIR"/preexec.sh); then
+		# clean after curl
+		if [[ -f "$WORKING_DIR"/preexec.sh ]]; then
+			rm "$WORKING_DIR"/preexec.sh
+		fi
+		printf "===\nDownload failed, check internet connection or github repo https://github.com/rcaloras/bash-preexec\n===\n"
+		notify-send -i error "Problem with $0" "\nDownload failed, check internet connection or github repo https://github.com/rcaloras/bash-preexec\n"
+		return 1
+	fi
+fi
+
+# SECONDS bash variable
+# this indicates last executed command time
+# check 'man bash' for SECONDS variable definition
+function preexec() { SECONDS_WHEN_LAST_COMMAND_WAS_EXECUTED=$SECONDS; LAST_EXECUTED_COMMAND=$1; }
+function precmd() {
+	if [[ $((SECONDS - SECONDS_WHEN_LAST_COMMAND_WAS_EXECUTED)) -gt $NOTIFICATION_SECONDS_TRESHOLD ]]; then
+		/bin/bash "$WORKING_DIR"/play_sound
+		notify-send -i terminal "Execution is finished" "$LAST_EXECUTED_COMMAND"
+	fi
+}
