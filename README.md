@@ -49,3 +49,20 @@ Now try to test if notification appear:
 
 There is variable `NOTIFICATION_SECONDS_TRESHOLD` in `postexec_notify` script. This variable indicates how long command should work to be considered as long-running.
 By default it is equals to 5 seconds, this means that any command running more than 5 seconds is considered as long-running command, notification would appear after finish.
+
+## Uninstall
+
+**Manual**
+
+Open your `~/.bashrc` file and find there sourcing of `postexec_notify`. It should look like:
+
+	source /home/c0rp/postexec_notify
+
+Remove this line from `.bashrc`.
+
+**Oneline**
+
+Here is more automated way:
+
+	$ sed -i '/postexec_notify/d' ~/.bashrc
+
