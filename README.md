@@ -17,7 +17,7 @@ Script depends on
 
 ## Quick test
 
-this is not finished
+wget -O - 'https://raw.githubusercontent.com/c0rp-aubakirov/notify_after_command_executed/master/postexec_notify' | bash
 
 ## Installation
 
