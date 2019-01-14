@@ -1,6 +1,6 @@
 ## What is it
 
-notify_after_command_executed is inspired by this [Q/A] (http://askubuntu.com/questions/611874/how-do-you-make-your-terminal-play-a-sound-or-offer-a-notification-when-it-has-f)
+notify_after_command_executed is inspired by this [Q/A](http://askubuntu.com/questions/611874/how-do-you-make-your-terminal-play-a-sound-or-offer-a-notification-when-it-has-f)
 
 The purpose of this scripts is to notify about finishing long-running terminal commands.
 
