@@ -50,6 +50,8 @@ Now try to test if notification appear:
 There is variable `NOTIFICATION_SECONDS_TRESHOLD` in `postexec_notify` script. This variable indicates how long command should work to be considered as long-running.
 By default it is equals to 5 seconds, this means that any command running more than 5 seconds is considered as long-running command, notification would appear after finish.
 
+I add variable `NOTIFICATION_IGNORE_REGEX` to ignore notification.(fx-kirin)
+
 ## Uninstall
 
 **Manual**
@@ -65,4 +67,6 @@ Remove this line from `.bashrc`.
 Here is more automated way:
 
 	$ sed -i '/postexec_notify/d' ~/.bashrc
+
+
 

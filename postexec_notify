@@ -19,7 +19,8 @@ WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Treshold from which we start to notify about long running commands
 # this is define what is "long-running"
 # by default it is 5 seconds
-NOTIFICATION_SECONDS_TRESHOLD=5
+NOTIFICATION_SECONDS_THRESHOLD=60
+NOTIFICATION_IGNORE_REGEX="^(vim|ssh|screen|jupyter|ranger)"
 
 # check if preexec is available or already downloaded
 if [[ ! -f "$WORKING_DIR"/preexec.sh ]];then
@@ -41,10 +42,12 @@ fi
 # check 'man bash' for SECONDS variable definition
 function preexec() { SECONDS_WHEN_LAST_COMMAND_WAS_EXECUTED=$SECONDS; LAST_EXECUTED_COMMAND=$1; }
 function precmd() {
-	if [[ $((SECONDS - SECONDS_WHEN_LAST_COMMAND_WAS_EXECUTED)) -gt $NOTIFICATION_SECONDS_TRESHOLD ]]; then
-		/bin/bash "$WORKING_DIR"/play_sound
-		notify-send -i terminal "Execution is finished" "$LAST_EXECUTED_COMMAND"
-	fi
+    if [[ ! $LAST_EXECUTED_COMMAND =~ $NOTIFICATION_IGNORE_REGEX ]]; then
+        if [[ $((SECONDS - SECONDS_WHEN_LAST_COMMAND_WAS_EXECUTED)) -gt $NOTIFICATION_SECONDS_THRESHOLD ]]; then
+            /bin/bash "$WORKING_DIR"/play_sound
+            notify-send -i terminal "Execution is finished" "$LAST_EXECUTED_COMMAND"
+        fi
+    fi
 }
 
 . "$WORKING_DIR"/preexec.sh
