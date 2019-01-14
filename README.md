@@ -17,7 +17,7 @@ Script depends on
 
 ## Quick test
 
-wget -O - 'https://raw.githubusercontent.com/c0rp-aubakirov/notify_after_command_executed/master/postexec_notify' | bash
+    wget -O - 'https://raw.githubusercontent.com/c0rp-aubakirov/notify_after_command_executed/master/postexec_notify' | bash
 
 ## Installation
 
